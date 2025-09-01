@@ -9,10 +9,9 @@ public class TradeManager {
 public static void addTrade() {
     try (Connection con = DBConnection.getConnection()) {
 
-        // ✅ Fix leftover newline from previous input
-        sc.nextLine(); // <-- Add this to clear input buffer
+  
+        sc.nextLine();
 
-        // ✅ Prompt and validate Trade Date
         String date;
         java.sql.Date sqlDate;
         while (true) {
@@ -33,7 +32,7 @@ public static void addTrade() {
             }
         }
 
-        // ✅ Other inputs
+    
         System.out.print("Enter Counterparty: ");
         String counterparty = sc.nextLine().trim();
 
@@ -50,7 +49,7 @@ public static void addTrade() {
         System.out.print("Enter Trade Type (BUY/SELL): ");
         String tradeType = sc.nextLine().trim().toUpperCase();
 
-        // ✅ Insert into database
+       
         String sql = "INSERT INTO Trades (TradeDate, Counterparty, Commodity, Volume, Price, TradeType) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setDate(1, sqlDate);
